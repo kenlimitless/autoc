@@ -1,0 +1,5 @@
+indexes:
+- kind: BBProduct
+  properties:
+  - name: name
+    direction: asc
