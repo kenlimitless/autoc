@@ -2,21 +2,18 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
-# [START handlers]
 handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: /bootstrap
-  static_dir: bootstrap
+- url: /product/.*
+  script: product_autoc.app
 
-- url: /loader/start
-  script: product_loader.app
-# [END handlers]
+- url: /
+  static_files: index.html
+  upload: index\.html
 
-# [START libraries]
 libraries:
 - name: webapp2
   version: latest
-# [END libraries]

@@ -1,5 +1,5 @@
 indexes:
 - kind: BBProduct
   properties:
-  - name: name
+  - name: name_lower
     direction: asc

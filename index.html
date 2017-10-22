@@ -1,51 +1,66 @@
-<html>
-  <head>
-    <!-- [START css] -->
-    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css">
-    <!-- [END css] -->
-    <style type="text/css">
-      body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-      }
-      blockquote {
-        margin-bottom: 10px;
-        border-left-color: #bbb;
-      }
-      form {
-        margin-top: 10px;
-      }
-      .form-signin input[type="text"] {
-        font-size: 16px;
-        height: auto;
-        margin-bottom: 15px;
-        padding: 7px 9px;
-      }
-      .row {
-        margin-left: 0px;
-        margin-top: 10px;
-        overflow: scroll;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">App Engine - BB Auto Complete</a>
-          <div class="nav-collapse collapse pull-right">
-          </div>
-        </div>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Hello, world!</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+
+  <style>
+    .autocomplete-suggestions {
+      position: absolute;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(0,0,0,.1);
+    }
+
+    .autocomplete-suggestion {
+      padding: 3px 10px;
+      cursor: pointer;
+    }
+
+    .autocomplete-suggestion.selected {
+      background: rgba(0,0,0,.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header clearfix mt-5">
+      <h3 class="text-muted text-center">Search product by name</h3>
+    </header>
+
+    <main role="main">
+
+      <div class="jumbotron">
+        <input class="form-control form-control-lg" type="text" name="q" />
       </div>
-    </div>
-    <div class="container">
-    </div>
-  </body>
+
+    </main>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+  <script src="https://rawgit.com/Pixabay/JavaScript-autoComplete/master/auto-complete.min.js"></script>
+  <script>
+    var xhr;
+    new autoComplete({
+      cache: false,
+      selector: 'input[name="q"]',
+      source: function (term, response) {
+        try { xhr.abort(); } catch (e) { }
+        xhr = $.getJSON('https://valiant-cycle-183619.appspot.com/product/', { prefix: term }, function (data) { response(data); });
+      }
+    });
+  </script>
+</body>
+
 </html>
