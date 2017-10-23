@@ -28,7 +28,7 @@ class BBProductSearch(webapp2.RequestHandler):
         return products
 
     def _get_memcache_search_key(self, prefix):
-        return 'product:search:'.format(prefix)
+        return 'product:search:%s' % prefix
 
 app = webapp2.WSGIApplication([
     ('/product/', BBProductSearch)
